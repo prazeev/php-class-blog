@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
 {
@@ -90,6 +91,15 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        if(!$category) {
+            return redirect('/categories');
+        }
+        $delete = $category->delete();
+        if($delete) {
+            return redirect('/categories');
+        } else {
+            return redirect('/categories');
+        }
     }
 }

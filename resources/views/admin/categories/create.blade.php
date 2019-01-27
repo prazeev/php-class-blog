@@ -8,7 +8,9 @@
                 <div class="card-body">
                     <form action="{{isset($category) ? route('categories.update', [$category->id]) : route('categories.store')}}" method="post">
                         @csrf
-                        @method('PATCH')
+                        @if(isset($category))
+                            @method('PATCH')
+                        @endif
                         <div class="form-group">
                             <label for="title">Title *</label>
                             <input type="text" class="form-control" required="required" placeholder="Enter title.." id="title" name="title" value="{{isset($category) ? $category->title : ''}}">

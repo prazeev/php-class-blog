@@ -23,7 +23,12 @@
                                         <td>{{$category->title}}</td>
                                         <td>{{$category->description}}</td>
                                         <td>
-                                            <a href="{{route('categories.edit',[$category->id])}}">Edit</a>
+                                            <a href="{{route('categories.edit',[$category->id])}}">Edit</a> |
+                                            <form action="{{route('categories.destroy',[$category->id])}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
